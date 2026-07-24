@@ -55,13 +55,13 @@ VEHICLE.Equipment = {
 		Category = "Lightbar",
 		Options = {
 			{
-				Option = "Koito LED110",
+				Option = "Whelen Justice",
 				Components = {
 					{
-						Component = "koito_led110",
-						Position = Vector( 0, -6.5, 83.7 ),
-						Angles = Angle( 0, 0, 0 ),
-						Scale = 1.07
+						Component = "whelen_justice_jpn",
+						Position = Vector( 0, -9.2, 90 ),
+						Angles = Angle( 1.5, 90, 0 ),
+						Scale = 1.035
 					},
 				}
 			}
