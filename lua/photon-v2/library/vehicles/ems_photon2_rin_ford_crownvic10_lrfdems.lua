@@ -1,7 +1,7 @@
 if (Photon2.ReloadVehicleFile()) then return end --rin
 local VEHICLE = Photon2.LibraryVehicle()
 
-VEHICLE.Title 		= "2010 Ford Crown Victoria LRFD EMS"
+VEHICLE.Title 		= "2010 Ford Crown Victoria LREMS"
 VEHICLE.Vehicle		= "cvpi_hd_sgm"
 VEHICLE.Category 	= "Photon 2: Lake Rin EMS"
 VEHICLE.Author		= "Rin Hoshizora"
@@ -62,9 +62,9 @@ VEHICLE.Equipment = {
 			{
 				Option = "Street Appearance Package",
 				BodyGroups = {
-					{ BodyGroup = "grille", Value = 1 },
-					{ BodyGroup = "reartrim", Value = 1 },
-					{ BodyGroup = "handles", Value = 1 },
+					{ BodyGroup = "grille", Value = 0 },
+					{ BodyGroup = "reartrim", Value = 0 },
+					{ BodyGroup = "handles", Value = 0 },
 					{ BodyGroup = "trunkmodel", Value = 1 },
 					{ BodyGroup = "mirrors", Value = 0 },
 					{ BodyGroup = "bumperf_chrome", Value = 0 },
@@ -74,9 +74,9 @@ VEHICLE.Equipment = {
 					{ BodyGroup = "spotlight_r", Value = 1 },
 					{ BodyGroup = "windowbars", Value = 0 },
                     { BodyGroup = "hubcaps", Value = 0 },
-                    { BodyGroup = "trunkemblem", Value = 1 },
+                    { BodyGroup = "trunkemblem", Value = 0 },
                     { BodyGroup = "partition", Value = 1 },
-                    { BodyGroup = "doortrim", Value = 2 },
+                    { BodyGroup = "doortrim", Value = 0 },
                     { BodyGroup = "door_l_notch", Value = 1 },
                     { BodyGroup = "door_r_notch", Value = 1 },
                     { BodyGroup = "keypad", Value = 0 },
@@ -88,21 +88,17 @@ VEHICLE.Equipment = {
     {
 		Category = "Lightbar",
 		Options = {
-            {
-				Option = "Patlite AXS-12",
+			{
+				Option = "Whelen Justice",
 				Components = {
 					{
-                        Component = "patlite_axs12",
-                        Position = Vector( 0, -17, 69.5 ),
-                        Angles = Angle( -1, -90, 0 ),
-                        Scale = 1.1,
-						Options = {
-                            FeetWidthOffset = 1,
-                            FeetTilt = -4,
-                        },
+						Component = "whelen_justice_jpn",
+						Position = Vector( 0, -19.2, 69.2 ),
+						Angles = Angle( -1, 270, 0 ),
+						Scale = 0.9,
 					},
 				}
-			},
+			}
 		}
 	},
     {

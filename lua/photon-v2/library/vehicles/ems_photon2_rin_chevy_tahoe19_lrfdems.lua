@@ -1,7 +1,7 @@
 if (Photon2.ReloadVehicleFile()) then return end --rin
 local VEHICLE = Photon2.LibraryVehicle()
 
-VEHICLE.Title 		= "2019 Chevrolet Tahoe LRFD EMS"
+VEHICLE.Title 		= "2019 Chevrolet Tahoe LREMS"
 VEHICLE.Vehicle		= "19tahoe_sgm"
 VEHICLE.Category 	= "Photon 2: Lake Rin EMS"
 VEHICLE.Author		= "Rin Hoshizora"
@@ -58,10 +58,10 @@ VEHICLE.Equipment = {
 				Option = "Whelen Justice",
 				Components = {
 					{
-						Component = "whelen_justice_jpn",
+						Component = "photon_sm_liberty_ii_suv",
 						Position = Vector( 0, -9.2, 90 ),
 						Angles = Angle( 1.5, 90, 0 ),
-						Scale = 1.035
+						Scale = 1.05,
 					},
 				}
 			}

@@ -1,6 +1,6 @@
 "VertexLitGeneric"
 {
-	"$basetexture" "rin/lrems2/sprinter19/ambulance"
+	"$basetexture" "rin/lrems2/f550/ems"
     "$bumpmap" "sentry/shared/skin_nm"
 	
     "$envmap" "env_cubemap"

@@ -1,7 +1,7 @@
 if (Photon2.ReloadVehicleFile()) then return end
 local VEHICLE = Photon2.LibraryVehicle()
 
-VEHICLE.Title 		= "1986 Ford F150 Ambulance LRFD EMS"
+VEHICLE.Title 		= "1986 Ford F150 Ambulance LREMS"
 VEHICLE.Vehicle		= "86f150_ambu_sgm"
 VEHICLE.Category 	= "Photon 2: Lake Rin EMS"
 VEHICLE.Author		= "Rin Hoshizora"
