@@ -21,20 +21,78 @@ VEHICLE.Equipment = {
 		}
 	},
 	{
+		Category = "Lightbar",
+		Options = {
+            {
+				Option = "Whelen Legacy",
+				Components = {
+					{
+                        Component = "whelen_legacy_54_lr_ems",
+                         Position = Vector( 0, -9.5, 88.5 ),
+                        Angles = Angle( 1, 90, 0 ),
+                        Scale = 0.95,
+						BodyGroups = {
+							["clamps"] = 1,
+						},
+						Bones = {
+							["foot_left"] =	{ Vector( 0.5, 0, 0 ), Angle( 0, 0, 0 ), 1 },
+							["foot_right"] =	{ Vector( -0.5, 0, 0 ), Angle( 0, 0, 0 ), 1 },
+							["clamp_low_left"] =	{ Vector( 1.2, 0, 0 ), Angle( 0, 0, 0 ), 1 },
+							["clamp_low_right"] =	{ Vector( -1.2, 0, 0 ), Angle( 0, 0, 0 ), 1 },
+						},
+					},
+				}
+			},
+        }
+	},
+	{
 		Category = "Siren",
 		Options = {
 			{
 				Option = "Whelen 295HFSA6",
 				Components = {
 					{
-						Name = "@siren",
+						Name = "@siren_speaker",
 						Component = "siren_prototype",
-						Position = Vector(0, 120, 27.1),
-						Angles = Angle(0, -90, 0),
-						Scale = 0,
-						Siren = "whelen_295hfsa6"
+						Model = "models/sentry/props/jp/patlitespeaker.mdl",
+						Position = Vector( 20.5, 117, 21.25 ),
+						Angles = Angle( 0, -100, 0 ),
+						Scale = 0.65,
+						Siren = "whelen_295hfsa6",
+						Templates = {
+							["Sound"] = { 
+								Tone = {
+									DSP = 0,
+									Pitch = 100
+								}
+							}
+						},
+					},
+				},
+				Props = {
+					{
+						Model = "models/sentry/props/jp/patlitespeaker.mdl",
+						Position = Vector( -20.5, 117, 21.25 ),
+						Angles = Angle( 0, -80, 0 ),
+						Scale = 0.65,
 					},
 				}
+			}
+		}
+	},
+	{
+		Category = "Spotlight",
+		Options = {
+			{
+				Option = "Pillar Spotlight",
+				Components = {
+					{
+						Component = "photon_whe_par46_left",
+						Position = Vector( -37, 40.5, 68 ),
+						Angles = Angle( 0, 0, 0 ),
+						Scale = 1,
+					},
+				},
 			},
 		}
 	},
@@ -52,80 +110,202 @@ VEHICLE.Equipment = {
 		}
 	},
 	{
-		Category = "Lightbar",
+		Category = "Front Lights",
 		Options = {
 			{
-				Option = "Whelen Justice",
+				Option = "Whelen Ion",
 				Components = {
 					{
-						Component = "photon_sm_liberty_ii_suv",
-						Position = Vector( 0, -9.2, 90 ),
-						Angles = Angle( 1.5, 90, 0 ),
-						Scale = 1.05,
+						Name = "@front_ion",
+						Component = "photon_whe_ion",
+						Position = Vector( 18, 117, 43.95 ),
+						Angles = Angle( -1.5, -8, 0 ),
+						Scale = 0.9,
+						States = { "R" },
+						Segments = {
+							LightEMS = {
+								Frames = {
+									[1] = "Light"
+								},
+								Sequences = {
+									["STAGE1"] = sequence():TripleFlash( 0, 1 ):SetTiming( 1/15 ),
+									["STAGE3"] = sequence():TripleFlash( 1, 0 ):SetTiming( 1/20 ),
+								}
+							},
+							["DVI"] = {
+								Frames = {
+									[0] = "[~R*0.5] 1",
+									[1] = "1:~R",
+								},
+								Sequences = {
+									["ON"] = sequence():Sequential(0, 1):Stretch(8)
+								}
+							},
+						},
+						Inputs = {
+							["Emergency.Warning"] = {
+								["MODE1"] = {
+									DVI = "ON"
+								},
+								["MODE2"] = {},
+								["MODE3"] = {
+									LightEMS = "STAGE3"
+								}
+							},
+						}
 					},
-				}
-			}
+					{
+						Inherit = "@front_ion",
+						Position = Vector( -18, 117, 43.95 ),
+						Angles = Angle( 1.5, 8, 0 ),
+						Inputs = {
+							["Emergency.Warning"] = {
+								["MODE1"] = {
+									DVI = "ON"
+								},
+								["MODE2"] = {},
+								["MODE3"] = {
+									LightEMS = "STAGE3"
+								}
+							},
+						}
+					},
+					{
+						Inherit = "@front_ion",
+						Position = Vector( 35.5, 111.5, 21.8 ),
+						Angles = Angle( 0, -27, 0 ),
+						Inputs = {
+							["Emergency.Warning"] = {
+								["MODE1"] = {
+									DVI = "ON:180"
+								},
+								["MODE2"] = {},
+								["MODE3"] = {
+									LightEMS = "STAGE3:180"
+								}
+							},
+						}
+					},
+					{
+						Inherit = "@front_ion",
+						Position = Vector( -35.5, 111.5, 21.8 ),
+						Angles = Angle( 0, 27, 0 ),
+						Inputs = {
+							["Emergency.Warning"] = {
+								["MODE1"] = {
+									DVI = "ON:180"
+								},
+								["MODE2"] = {},
+								["MODE3"] = {
+									LightEMS = "STAGE3:180"
+								}
+							},
+						}
+					},
+                }
+			},
 		}
 	},
 	{
-		Category = "Front Flashers",
+		Category = "Rear Lights",
 		Options = {
 			{
-				Option = "Osaka Siren LAF-150",
+				Option = "Whelen Ion",
 				Components = {
 					{
-						Component = "oss_laf150",
-						Position = Vector( -20, 123, 37.3 ),
-						BodyGroups = {
-							["bracket"] = 0,
-							["mount"] = 1,
+						Name = "@rear_ion",
+						Component = "photon_whe_ion_surface",
+						Position = Vector( 27.5, -124.6, 49.5 ),
+						Angles = Angle( 0, 188, 0 ),
+						Scale = 0.9,
+						States = { "R" },
+						Segments = {
+							LightEMS = {
+								Frames = {
+									[1] = "Light"
+								},
+								Sequences = {
+									["STAGE1"] = sequence():TripleFlash( 0, 1 ):SetTiming( 1/15 ),
+									["STAGE3"] = sequence():TripleFlash( 1, 0 ):SetTiming( 1/20 ),
+								}
+							},
+							["DVI"] = {
+								Frames = {
+									[0] = "[~R*0.5] 1",
+									[1] = "1:~R",
+								},
+								Sequences = {
+									["ON"] = sequence():Sequential(0, 1):Stretch(8)
+								}
+							},
 						},
-						Angles = Angle( 0, 9, 0 ),
-						Scale = 1.0
+						Inputs = {
+							["Emergency.Warning"] = {
+								["MODE1"] = {
+									DVI = "ON"
+								},
+								["MODE2"] = {},
+								["MODE3"] = {
+									LightEMS = "STAGE3"
+								}
+							},
+						}
 					},
 					{
-						Component = "oss_laf150",
-						Position = Vector( 20, 123, 37.3 ),
-						BodyGroups = {
-							["bracket"] = 0,
-							["mount"] = 1,
-						},
-						Angles = Angle( 0, -9, 0 ),
-						Scale = 1.0
+						Inherit = "@rear_ion",
+						Position = Vector( -27.5, -124.6, 49.5 ),
+						Angles = Angle( 0, 172, 0 ),
+						Inputs = {
+							["Emergency.Warning"] = {
+								["MODE1"] = {
+									DVI = "ON"
+								},
+								["MODE2"] = {},
+								["MODE3"] = {
+									LightEMS = "STAGE3"
+								}
+							},
+						}
 					},
 				}
 			},
 		}
 	},
 	{
-		Category = "Rear Flashers",
+		Category = "Side Lights",
 		Options = {
-			{
-				Option = "Osaka Siren LAF-150",
+            {
+				Option = "Whelen Vertex",
 				Components = {
 					{
-						Component = "oss_laf150",
-						Position = Vector( -28.5, -126, 49.5 ),
-						BodyGroups = {
-							["bracket"] = 1,
-							["mount"] = 0,
-						},
-						Angles = Angle( 0, 172, 1 ),
-						Scale = 1.0
+                        Component = "whelen_vertex_lr_ems",
+                         Position = Vector( 49.4, 76.5, 44 ),
+                        Angles = Angle( 0, 90, 90 ),
+                        Scale = 1,
 					},
 					{
-						Component = "oss_laf150",
-						Position = Vector( 28.5, -126, 49.5 ),
-						BodyGroups = {
-							["bracket"] = 1,
-							["mount"] = 0,
-						},
-						Angles = Angle( 0, 188, 1 ),
-						Scale = 1.0
+                        Component = "whelen_vertex_lr_ems",
+                         Position = Vector( -49.4, 76.5, 44 ),
+                        Angles = Angle( 0, -90, 90 ),
+                        Scale = 1,
+					},
+					{
+                        Component = "whelen_vertex_lr_ems",
+                         Position = Vector( 49.4, -69.5, 44 ),
+                        Angles = Angle( 0, 90, 90 ),
+                        Scale = 1,
+						Phase = 180,
+					},
+					{
+                        Component = "whelen_vertex_lr_ems",
+                         Position = Vector( -49.4, -69.5, 44 ),
+                        Angles = Angle( 0, -90, 90 ),
+                        Scale = 1,
+						Phase = 180,
 					},
 				}
 			},
-		}
+        }
 	},
 	{
 		Category = "Equipment",
@@ -151,9 +331,15 @@ VEHICLE.Equipment = {
 						RenderGroup = RENDERGROUP_OPAQUE,
 					},
 					{
-						Model = "models/sentry/props/jp/antenna.mdl",
-						Position = Vector( -22, 2, 87.2),
-						Angles = Angle( -5, 0, -3 ),
+						Model = "models/schmal/antennas/antenna_6.mdl",
+						Position = Vector( -21.1, -60, 92.2),
+						Angles = Angle( -1, 90, -3.5 ),
+						Scale = 1
+					},
+					{
+						Model = "models/schmal/antennas/antenna_6.mdl",
+						Position = Vector( 21.1, -60, 92.2),
+						Angles = Angle( -1, 90, 3.5 ),
 						Scale = 1
 					},
 					{

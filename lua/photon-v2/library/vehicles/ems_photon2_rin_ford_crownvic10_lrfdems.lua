@@ -22,6 +22,122 @@ VEHICLE.Equipment = {
 		}
 	},
 	{
+		Category = "Flashers",
+		Options = {
+			{
+				Option = "Flashers",
+				Components = {
+					{
+						Component = "photon_standard_cvpi10",
+						Segments = {
+							["Headlight_flashers"] = {
+								Frames = {
+									[4] = "[PASS] 1 21 19 9 11 30 2 22 20 10 12 31"
+								},
+								Sequences = {
+									STAGE3 = sequence():Alternate(1,2,6),
+									CUT = { 4 }
+								}
+							},
+							["Rear_flashers_EMS"] = {
+								Off = "OFF",
+								Frames = {
+									[1] = "15:~RI",
+									[2] = "16:~RI",
+								},
+								Sequences = {
+									STAGE3 = sequence():FlashHold(1,2,5):FlashHold(2,2,5):SetTiming(1/30)
+								}
+							}
+						},
+						Inputs = {
+							["Emergency.Warning"] = {
+								["MODE3"] = { 
+									Headlight_flashers = "STAGE3",
+									Rear_flashers_EMS = "STAGE3"
+								}
+							},
+						}
+					}
+				}
+			},
+		}
+	},
+	{
+		Category = "Lightbar",
+		Options = {
+			{
+				Option = "Whelen Justice",
+				Components = {
+					{
+						Component = "whelen_justice_lr_ems",
+						Position = Vector( 0, -19.2, 69.2 ),
+						Angles = Angle( -1, 270, 0 ),
+						Scale = 0.9,
+					},
+				}
+			}
+		}
+	},
+	{
+		Category = "Front Lights",
+		Options = {
+			{
+				Option = "Whelen 700 Super-LED",
+				Components = {
+					{
+						Name = "@front_700",
+						Component = "creeper_whelen_700_superled",
+						Position = Vector( 10, 110.8, 30.2 ),
+						Angles = Angle( 0, -5, 18 ),
+						Scale = 0.7,
+						SubMaterials = {
+							[7] = "schmal/photon/fedsig_visionslr/lens_pod_2",
+						},
+						Segments = {
+							LightEMS = {
+								Frames = {
+									[1] = "1:R 3:R"
+								},
+								Sequences = {
+									["STAGE1"] = {1,1,1,1,1,1,0,0,0,0,0,0},
+									["STAGE3"] = {1,0,1,0,1,0,0,0,1,1,0,0,1,1,0,0,1,1,0,0,0},
+								}
+							},
+						},
+						Inputs = {
+							["Emergency.Warning"] = {
+								["MODE1"] = {
+									LightEMS = "STAGE1"
+								},
+								["MODE2"] = {},
+								["MODE3"] = {
+									LightEMS = "STAGE3"
+								}
+							},
+						}
+					},
+					{
+						Inherit = "@front_700",
+						Position = Vector( -10, 110.8, 30.2 ),
+						Angles = Angle( 0, 5, 18 ),
+						Inputs = {
+							["Emergency.Warning"] = {
+								["MODE1"] = {
+									LightEMS = "STAGE1"
+								},
+								["MODE2"] = {},
+								["MODE3"] = {
+									LightEMS = "STAGE3"
+								}
+							},
+						}
+					},
+				}
+			},
+		}
+	},
+	{
 		Category = "Siren",
 		Options = {
 			{
@@ -35,6 +151,26 @@ VEHICLE.Equipment = {
 						Scale = 0,
 						Siren = "whelen_295hfsa6"
 					},
+				}
+			},
+		}
+	},
+	{
+		Category = "Spotlight",
+		Options = {
+			{
+				Option = "Pillar Spotlight",
+				Components = {
+					{
+						Component = "photon_par46_left",
+						Position = Vector( -35.06, 26.46, 49.282 ),
+						Angles = Angle( 0, 0, 0 ),
+						Scale = 1,
+					},
+				},
+				BodyGroups = {
+					{ BodyGroup = "door_l_notch", Value = 0 },
+					{ BodyGroup = "door_r_notch", Value = 1 },
 				}
 			},
 		}
@@ -86,55 +222,6 @@ VEHICLE.Equipment = {
 		}
 	},
     {
-		Category = "Lightbar",
-		Options = {
-			{
-				Option = "Whelen Justice",
-				Components = {
-					{
-						Component = "whelen_justice_jpn",
-						Position = Vector( 0, -19.2, 69.2 ),
-						Angles = Angle( -1, 270, 0 ),
-						Scale = 0.9,
-					},
-				}
-			}
-		}
-	},
-    {
-		Category = "Front Flashers",
-		Options = {
-			{
-				Option = "Patlite LP3",
-				Components = {
-					{
-						Name = "@grille_lp3",
-						Component = "photon_patlite_lp3_rin",
-						Position = Vector( -19.3, 113.5, 14 ),
-						Angles = Angle( 0, 7, 0 ),
-						Scale = 1,
-						StateMap = "[R] 1",
-						Phase = "A",
-						InputActions = {
-							["Emergency.Warning"] = {
-								["MODE1"] = { Light = "FLASH4" },
-								["MODE2"] = { Light = "FLASH4" },
-								["MODE3"] = { Light = "FLASH4" },
-							},
-						}
-					},
-					{
-						Inherit = "@grille_lp3",
-						Position = Vector( 19.3, 113.5, 14 ),
-						Angles = Angle( 0, -7, 0 ),
-						Phase = "A",
-						StateMap = "[R] 1"
-					}
-				}
-			}
-		}
-	},
-	{
 		Category = "Equipment",
 		Options = {
 			{
