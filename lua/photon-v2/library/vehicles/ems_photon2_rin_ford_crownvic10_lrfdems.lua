@@ -278,9 +278,21 @@ VEHICLE.Equipment = {
 						RenderGroup = RENDERGROUP_OPAQUE,
 					},
 					{
-						Model = "models/sentry/props/jp/antenna.mdl",
-						Position = Vector( 0, -106, 48.6),
-						Angles = Angle( 0, 0, 4.5 ),
+						Model = "models/schmal/antenna_motorola.mdl",
+						Position = Vector( 0, -35, 67.8),
+						Angles = Angle( 0, 0, 2.5 ),
+						Scale = 1
+					},
+					{
+						Model = "models/schmal/antenna_motorola.mdl",
+						Position = Vector( -27, -104, 46.9),
+						Angles = Angle( -4.5, 0, 4 ),
+						Scale = 1
+					},
+					{
+						Model = "models/schmal/antenna_motorola.mdl",
+						Position = Vector( 27, -104, 46.9),
+						Angles = Angle( 4.5, 0, 4 ),
 						Scale = 1
 					},
 					{

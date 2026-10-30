@@ -28,7 +28,7 @@ VEHICLE.Equipment = {
 				Option = "Mars Skybolt",
 				Components = {
 					{
-                        Component = "photon_anemolis_skybolt",
+                        Component = "mars_skybolt_lr_ems",
                         Position = Vector( 0, -19, 57.3 ),
                         Angles = Angle( 0, 180, 0 ),
                         Scale = 1.25,
